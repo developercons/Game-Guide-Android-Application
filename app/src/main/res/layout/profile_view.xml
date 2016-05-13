@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/game_background">
+
+    <include layout="@layout/toolbar_view"
+        android:id="@+id/profile_toolbar"/>
+
+    <LinearLayout
+        android:id="@+id/profile_view_info_box"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="70dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_view_prof_pic"
+            android:layout_width="@dimen/auth_uni_pic_width"
+            android:layout_height="@dimen/auth_uni_pic_width"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/prof_pic"
+            />
+
+        <TextView
+            android:id="@+id/profile_view_name_surname"
+            android:layout_width="@dimen/auth_box_width"
+            android:layout_height="0dp"
+            android:text="@string/profile_view_name_surname"
+            android:textSize="@dimen/auth_uni_text_size_large"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:id="@+id/profile_view_edit_account"
+            android:layout_width="@dimen/auth_box_width"
+            android:layout_height="0dp"
+            android:text="@string/profile_view_edit_account"
+            android:textSize="@dimen/auth_uni_text_size_large"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:clickable="true" />
+
+        <Button
+            android:id="@+id/profile_view_disconnect_with_fb"
+            android:layout_width="@dimen/auth_box_width"
+            android:layout_height="@dimen/auth_uni_bottom_button_height"
+            android:background="@color/auth_view_blue_button_solid"
+            android:text="@string/profile_view_disconnect_with_fb_button_text"
+            android:textSize="@dimen/auth_uni_text_size_small"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical|center_horizontal" />
+
+    </LinearLayout>
+
+       <Button
+        android:id="@+id/profile_view_logout_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/auth_uni_bottom_button_height"
+        android:background="@drawable/green_button_pressed"
+        android:text="@string/profile_view_logout_button_text"
+        android:textSize="@dimen/auth_uni_text_size_large"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

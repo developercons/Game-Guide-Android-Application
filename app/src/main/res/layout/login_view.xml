@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/game_background"
+    android:contentDescription="@string/login_view_page_content_description">
+
+    <ImageView
+        android:id="@+id/login_view_logo"
+        android:layout_width="@dimen/auth_uni_pic_width"
+        android:layout_height="@dimen/auth_uni_pic_height"
+        android:contentDescription="@string/login_view_page_content_description"
+        android:src="@mipmap/logo"
+
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/login_view_email_input"
+        android:layout_marginBottom="@dimen/login_view_margin_logo_bottom"/>
+
+    <EditText
+        android:id="@+id/login_view_email_input"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/hint_email"
+        android:textSize="@dimen/auth_uni_hint_text_size"
+        android:textStyle="bold"
+
+        android:layout_gravity="center_horizontal"
+        android:gravity="bottom"
+        android:layout_above="@+id/login_view_password"
+        android:layout_alignStart="@+id/login_view_password"
+        />
+
+    <EditText
+        android:id="@+id/login_view_password"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/hint_password"
+        android:textSize="@dimen/auth_uni_hint_text_size"
+        android:textStyle="bold"
+
+        android:layout_gravity="center_horizontal"
+        android:gravity="bottom"
+        android:layout_centerInParent="true"/>
+    <TextView
+        android:id="@+id/login_error"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:text="@string/wrong_user_name"
+        android:textSize="@dimen/auth_uni_text_size_small"
+        android:textColor="@color/error_red"
+        android:textStyle="bold"
+
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/login_view_email_input"
+        android:layout_alignStart="@+id/login_view_forgot"
+        android:layout_marginTop="2dp"
+        android:clickable="true"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/login_view_forgot"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:text="@string/login_view_forgot_password_text"
+        android:textSize="@dimen/auth_uni_text_size_small"
+        android:textColor="@color/auth_view_texts_color"
+        android:textStyle="bold"
+
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/login_view_password"
+        android:layout_alignStart="@+id/login_view_password"
+        android:layout_marginTop="7dp"
+        android:clickable="true" />
+
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="@dimen/auth_buttons_height"
+        android:background="@drawable/green_button_pressed"
+        android:text="@string/login_button_text"
+        android:textSize="@dimen/auth_uni_text_size_large"
+        android:cropToPadding="true"
+
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/login_button_margin_top"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/login_view_forgot"
+        android:enabled="true" />
+
+    <TextView
+        android:id="@+id/login_view_sign_up_suggestion"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:text="@string/login_view_sign_up_suggestion_text"
+        android:textSize="@dimen/auth_uni_text_size_small"
+        android:textStyle="bold"
+        android:textColor="@color/auth_view_texts_color"
+
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/login_button"
+        android:layout_marginTop="18dp"
+        android:clickable="true" />
+
+    <LinearLayout
+        android:id="@+id/login_view_facebook_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/auth_uni_bottom_button_height"
+        android:background="@color/auth_view_blue_button_solid"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/auth_buttons_height"
+            android:src="@mipmap/logo_botton"
+            android:layout_weight="3"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="30dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/login_view_facebook_button_text"
+            android:textSize="@dimen/auth_uni_text_size_large"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+            android:textColor="@color/auth_view_texts_color"/>
+    </LinearLayout>
+
+</RelativeLayout>

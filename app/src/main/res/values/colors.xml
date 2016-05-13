@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="auth_view_texts_color">#FFFFFF</color>
+    <color name="auth_view_green_button_solid">#7aa000</color>
+    <color name="auth_view_green_button_mid_transparent">#D97aa000</color>
+    <color name="auth_view_blue_button_solid">#3a5795</color>
+    <color name="auth_view_blue_button_mid_transparent">#D93a5795</color>
+    <color name="red">#FF0000</color>
+    <color name="error_red">#FA3946</color>
+    <color name="white">#FFFFFF</color>
+    <color name="splash_screen">#DDDDDD</color>
+    <color name="toolbar_title_color">#417505</color>
+
+</resources>

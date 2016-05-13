@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sign_up"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/game_background">
+
+    <include layout="@layout/toolbar_view"
+        android:id="@+id/sign_up_toolbar"/>
+
+
+    <EditText
+        android:id="@+id/sign_up_view_user_name"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/hint_name"
+        android:textSize="@dimen/auth_uni_hint_text_size"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/sign_up_view_surname" />
+
+    <EditText
+        android:id="@+id/sign_up_view_surname"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/hint_surname"
+        android:textSize="@dimen/auth_uni_hint_text_size"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/sign_up_password" />
+
+    <EditText
+        android:id="@+id/sign_up_password"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/hint_password"
+        android:textSize="@dimen/auth_uni_hint_text_size"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/sign_up_email" />
+
+    <EditText
+        android:id="@+id/sign_up_email"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/hint_email"
+        android:textSize="@dimen/auth_uni_hint_text_size"
+        android:layout_centerInParent="true" />
+
+    <EditText
+        android:id="@+id/sign_up_repeat_email"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/hint_repeat_email"
+        android:textSize="@dimen/auth_uni_hint_text_size"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/sign_up_email" />
+
+    <TextView
+        android:id="@+id/sign_toast"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sign_up_repeat_email"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/auth_uni_hint_text_size"
+        android:text="@string/empty_field"
+        android:layout_marginTop="@dimen/sign_up_button_top_margin"
+        android:visibility="invisible"/>
+
+
+    <Button
+        android:id="@+id/sign_up_button"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="@dimen/auth_buttons_height"
+        android:background="@drawable/green_button_pressed"
+        android:cropToPadding="true"
+        android:text="@string/sign_up_button_text"
+        android:textSize="@dimen/auth_uni_text_size_large"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/sign_toast"
+        android:layout_marginTop="@dimen/sign_up_button_top_margin" />
+
+</RelativeLayout>

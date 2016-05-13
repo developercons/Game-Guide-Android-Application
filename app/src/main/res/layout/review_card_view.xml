@@ -1,0 +1,56 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:layout_height="200dp"
+    android:layout_marginBottom="10dp"
+    card_view:cardCornerRadius="4dp"
+    android:id="@+id/card_view_layout"
+    card_view:cardElevation="6dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/expert_mark">
+
+        <LinearLayout
+            android:id="@+id/author_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/auth_view_green_button_mid_transparent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/reviewer_picture"
+            android:layout_width="@dimen/auth_uni_pic_width"
+            android:layout_height="@dimen/auth_uni_pic_width"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/prof_pic"/>
+
+        <TextView
+            android:id="@+id/author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dsjhfilhfisdhfilsdhfslkhfcks"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/large_text_size"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="lsdkfjsldfkdghfshlidfjhlsdifhcslfwuilshwlfhwewf"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/author_linear"
+            android:layout_marginTop="20dp"
+            android:textSize="@dimen/large_text_size"/>
+    </RelativeLayout>
+
+
+
+
+</android.support.v7.widget.CardView>

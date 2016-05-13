@@ -1,0 +1,92 @@
+<resources>
+
+    <!-- Login page texts -->
+    <string name="login_view_app_name">GameGuide</string>
+    <string name="login_view_forgot_password_text">Forgot your password?</string>
+    <string name="login_view_sign_up_suggestion_text">New to Game Guide? Sign up</string>
+    <string name="login_view_facebook_button_text">Continue without Log in</string>
+    <string name="login_view_page_content_description">Game Guide</string>
+    <string name="login_button_text">LOGIN</string>
+
+    <!-- Sign up page texts -->
+    <string name="sign_up_view_title">Sign up</string>
+    <string name="sign_up_button_text">SIGN UP</string>
+    <string name="sign_up_toolbar_title">Sign up</string>
+
+    <!-- Edit account page texts -->
+    <string name="edit_account_view_change_photo_text">Change \n Photo</string>
+    <string name="edit_account_view_change_password_text">Change password</string>
+    <string name="edit_account_view_save_button_text">Save</string>
+    <string name="edit_account_toolbar_title">Edit Account</string>
+
+    <!-- Profile page texts -->
+    <string name="profile_view_name_surname">Name Surname</string>
+    <string name="profile_view_edit_account">Edit \n Account</string>
+    <string name="profile_view_disconnect_with_fb_button_text">Disconnect from \n Facebook</string>
+    <string name="profile_view_logout_button_text">LOGOUT</string>
+    <string name="profile_toolbar_title">Profile</string>
+
+    <!-- Password recovery page texts -->
+    <string name="password_rec_view_suggestion">Enter your email and we will send you the link to reset the password.</string>
+    <string name="password_rec_view_rec_button_text">RECOVER</string>
+    <string name="password_recovery_toolbar_title">Password recovery</string>
+
+    <!-- Password change page texts -->
+    <string name="hint_old_password">Old password</string>
+    <string name="hint_new_password">New password</string>
+    <string name="hint_repeat_new_password">Repeat new password</string>
+    <string name="change_password_change_button">Change password</string>
+    <string name="change_password_toolbar_title">Change password</string>
+
+
+    <!-- Authentication universal texts -->
+    <string name="hint_name">Name</string>
+    <string name="hint_surname">Surname</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_repeat_email">Repeat your email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_phone_number">Phone number</string>
+    <string name="login_empty_mail_hint_text">Mail is missing</string>
+    <string name="login_empty_password_hint_text">Password is missing</string>
+    <string name="invalid_mail">Invalid mail format</string>
+    <string name="invalid_password">Invalid password format</string>
+    <string name="invalid_password_mail">Invalid password and mail format</string>
+    <string name="wrong_user_name">Wrong username or password</string>
+    <string name="user_not_exit">User does not exist</string>
+    <string name="empty_field">Field is empty</string>
+
+
+    <string name="recycler_toolbar_title">Home</string>
+
+
+
+        <string name="drawer_name">Navigation Drawer</string>
+    <string-array name="planets_array">
+        <item>Login</item>
+        <item>Math Games</item>
+        <item>Logic Games</item>
+        <item>Role Playing</item>
+        <item>Strategy Games</item>
+        <item>Race Games</item>
+        <item>Puzzle Games</item>
+        <item>Board games</item>
+        <item>Video games</item>
+        <item>Card games</item>
+        <item>Dice games</item>
+        <item>Miniature games</item>
+        <item>Pencil-and-paper games</item>
+        <item>Tile-based games</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+
+
+
+
+
+
+
+
+
+</resources>

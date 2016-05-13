@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/edit_account"
+    android:background="@mipmap/game_background">
+
+    <include layout="@layout/toolbar_view"
+        android:id="@+id/edit_account_toolbar"
+        />
+
+    <LinearLayout
+        android:id="@+id/edit_account_view_profile_pic_box"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/edit_account_view_name">
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/edit_account_view_profile_picture"
+        android:layout_width="@dimen/auth_uni_pic_width"
+        android:layout_height="@dimen/auth_uni_pic_width"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/prof_pic"
+        />
+
+
+        <TextView
+        android:id="@+id/change_photo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_account_view_change_photo_text"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:clickable="true" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edit_account_view_name"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/hint_name"
+        android:textSize="@dimen/auth_uni_hint_text_size"
+        android:layout_above="@+id/edit_account_view_surname"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/edit_account_view_surname"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/hint_surname"
+        android:textSize="@dimen/auth_uni_hint_text_size"
+        android:layout_centerInParent="true" />
+
+    <EditText
+        android:id="@+id/edit_account_view_email"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/hint_email"
+        android:textSize="@dimen/auth_uni_hint_text_size"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/edit_account_view_surname" />
+
+    <EditText
+        android:id="@+id/edit_account_view_phone"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:hint="@string/hint_phone_number"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/edit_account_view_email" />
+
+    <TextView
+        android:id="@+id/edit_account_view_change_password"
+        android:layout_width="@dimen/auth_box_width"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_account_view_change_password_text"
+        android:textSize="@dimen/auth_uni_text_size_large"
+        android:layout_below="@+id/edit_account_view_phone"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"/>
+
+    <Button
+        android:id="@+id/edit_account_view_save_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/auth_uni_bottom_button_height"
+        android:background="@drawable/green_button_pressed"
+        android:text="@string/edit_account_view_save_button_text"
+        android:textSize="@dimen/auth_uni_text_size_large"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:clickable="true" />
+</RelativeLayout>
