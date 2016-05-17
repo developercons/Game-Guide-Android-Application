@@ -70,7 +70,7 @@ public class ProfileInfoFragment extends Fragment {
         profPicView.setImageBitmap(hostActivity.getCurrentProfPic());
         UserModel currentUser = UserManager.instance().getCurrentUser();
         if(currentUser != null){
-            firstLastNames.setText(currentUser.getFirst_name() + currentUser.getLast_name());
+            firstLastNames.setText(currentUser.getFirst_name() + " " + currentUser.getLast_name());
             Toast.makeText(getActivity(), "User info updated", Toast.LENGTH_SHORT).show();
         }
         // endregion

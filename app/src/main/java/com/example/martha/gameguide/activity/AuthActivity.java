@@ -1,6 +1,5 @@
 package com.example.martha.gameguide.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.widget.Toast;
@@ -24,7 +23,7 @@ public class AuthActivity extends BaseActivity implements FragmentActionListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_view);
+        setContentView(R.layout.home_unlogged);
 
         // region Fragments
         LogInFragment logInFragment = new LogInFragment();

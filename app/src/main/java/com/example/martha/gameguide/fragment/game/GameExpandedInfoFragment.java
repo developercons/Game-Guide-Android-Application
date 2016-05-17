@@ -22,7 +22,7 @@ public class GameExpandedInfoFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.test, container, false);
+        View view = inflater.inflate(R.layout.game_expanded_view2, container, false);
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);

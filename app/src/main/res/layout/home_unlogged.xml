@@ -6,14 +6,4 @@
     tools:context=".activity.HomeActivity"
     android:id="@+id/main_layout">
 
-    <include layout="@layout/recycle_view"
-        android:id="@+id/recycle_layout"/>
-
-    <include layout="@layout/activity_main_example"
-        android:id="@+id/drawer_layout"/>
-
-
-
-
-
 </FrameLayout>

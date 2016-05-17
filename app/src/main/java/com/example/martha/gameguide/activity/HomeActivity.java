@@ -23,7 +23,7 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_example);
+        setContentView(R.layout.home_logged);
 
 
 //        GameExpandedInfoFragment gameExpandedInfoFragment = new GameExpandedInfoFragment();
@@ -93,6 +93,7 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        GameManager.instance().resetParams();
     }
 
     public GameListAdapter getAdapter() {

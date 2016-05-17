@@ -96,18 +96,19 @@ public class LogInFragment extends Fragment {
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO Make log in request and notify actionListener on Response.
                 if (!ServiceManager.isConnectedToInternet(hostActivity)) {
                     Toast.makeText(getActivity(), "Please connect to Internet to login", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (isInputDataValid()) {
+                    enableAllButtons(false);
                     UserModel loginModel = new UserModel();
                     loginModel.setEmail(email.getText().toString());
                     loginModel.setPassword(password.getText().toString());
                     ServiceManager.instance().login(loginModel, getContext(), new RequestListener() {
                         @Override
-                        public void onComplete() {
+                            public void onComplete() {
+                            enableAllButtons(true);
                             actionListener.actionComplete(ACTION_LOG_IN_COMPLETE);
                         }
                     });
@@ -163,11 +164,19 @@ public class LogInFragment extends Fragment {
         });
     }
 
+    public void enableAllButtons(boolean index){
+            logIn.setEnabled(index);
+            signUp.setEnabled(index);
+            forgotPassword.setEnabled(index);
+            email.setEnabled(index);
+            password.setEnabled(index);
+            continueWithoutLoginBtn.setEnabled(index);
+    }
+
     public boolean isInputDataValid() {
         String emailText = email.getText().toString();
         String passwordText = password.getText().toString();
 
-        // check if fields are empty
         if (emailText.isEmpty()) {
             email.setHint(R.string.login_empty_mail_hint_text);
             Util.markEmptyField(email, hostActivity.getAnimBlink());
@@ -179,24 +188,20 @@ public class LogInFragment extends Fragment {
             return false;
         }
 
-        // check if fields are valid
         if(!Util.isEmailValid(emailText) && !Util.isPasswordValid(passwordText)){
 
             error.setText(R.string.invalid_password_mail);
             error.setVisibility(View.VISIBLE);
-//            Util.markInvalidField(email, hostActivity.getAnimBlink());
             return false;
         }
         if(!Util.isEmailValid(emailText) && Util.isPasswordValid(passwordText)){
             error.setText(R.string.invalid_mail);
             error.setVisibility(View.VISIBLE);
-//            Util.markInvalidField(email, hostActivity.getAnimBlink());
             return false;
         }
         if(Util.isEmailValid(emailText) && !Util.isPasswordValid(passwordText)){
             error.setText(R.string.invalid_password);
             error.setVisibility(View.VISIBLE);
-//            Util.markInvalidField(email, hostActivity.getAnimBlink());
             return false;
         }
         return true;

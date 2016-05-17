@@ -1,7 +1,6 @@
 package com.example.martha.gameguide.maneger;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.example.martha.gameguide.listener.RequestListener;
 import com.example.martha.gameguide.model.GameModel;
@@ -10,7 +9,6 @@ import com.example.martha.gameguide.viewholder.GameCardViewHolder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import retrofit2.Call;
 
@@ -95,6 +93,17 @@ public class GameManager {
         }
         System.out.println("********************ERROR, NO CALL TO REPLACE WITH!********************");
     }
+
+    // Must be called on homeActivity onDestroy().
+    public void resetParams() {
+        isLoadRequestMade = false;
+        categoryList.clear();
+        gameIdMap.clear();
+        enquedGameCallMap.clear();
+        tempCall = null;
+        queue = 0;
+    }
+
 
     public List<String> getCategoryList() {
         return categoryList;

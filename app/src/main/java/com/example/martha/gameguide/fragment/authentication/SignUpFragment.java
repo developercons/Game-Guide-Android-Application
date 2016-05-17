@@ -43,7 +43,9 @@ public class SignUpFragment extends Fragment {
     EditText password;
     EditText email;
     EditText repeatEmail;
+    Button signUpButton;
     TextView error;
+    ImageView toolbarBackButton;
     SpannableStringBuilder builder;
     String simple = "Field is empty ";
     String colored = "*";
@@ -67,7 +69,7 @@ public class SignUpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // region View
         View view = inflater.inflate(R.layout.sign_up_view, container, false);
-        Button signUpButton = (Button)view.findViewById(R.id.sign_up_button);
+        signUpButton = (Button)view.findViewById(R.id.sign_up_button);
         firstName = (EditText) view.findViewById(R.id.sign_up_view_user_name);
         lastName = (EditText) view.findViewById(R.id.sign_up_view_surname);
         password = (EditText) view.findViewById(R.id.sign_up_password);
@@ -86,7 +88,7 @@ public class SignUpFragment extends Fragment {
 
         initSingUpBtnListener(signUpButton);
         hostActivity.manageKeyPadActions(view, null, null, null);
-        initToolbar(view);
+        toolbarBackButton = initToolbar(view);
         initListeners();
 
         return view;
@@ -105,7 +107,7 @@ public class SignUpFragment extends Fragment {
             }
         });
     }
-    private void initToolbar(View rootView) {
+    private ImageView initToolbar(View rootView) {
         Toolbar toolbar = hostActivity.makeToolbar(rootView.findViewById(R.id.sign_up_toolbar), getString(R.string.sign_up_toolbar_title),
                 R.drawable.back, null, null);
         ImageView left = (ImageView)toolbar.findViewById(R.id.toolbar_leftButton);
@@ -115,6 +117,7 @@ public class SignUpFragment extends Fragment {
                 actionListener.actionComplete(ACTION_SIGN_UP_BACK);
             }
         });
+        return left;
     }
 
     private void initListeners(){
@@ -206,17 +209,12 @@ public class SignUpFragment extends Fragment {
             String emailText = email.getText().toString();
             String repeatEmailText = repeatEmail.getText().toString();
 
-
             if (firstNameText.isEmpty()) {
                 firstName.setText(builder);
-//                firstName.setHint(R.string.empty_field);
-//                Util.markEmptyField(firstName, hostActivity.getAnimBlink());
                 errorExist = false;
             }
             if (lastNameText.isEmpty()) {
                 lastName.setText(builder);
-//                lastName.setHint(R.string.empty_field);
-//                Util.markEmptyField(lastName, hostActivity.getAnimBlink());
                 errorExist = false;
             }
             if (passwordText.isEmpty()) {
@@ -226,13 +224,10 @@ public class SignUpFragment extends Fragment {
             }
             if (emailText.isEmpty()) {
                 email.setText(builder);
-//                email.setHint(R.string.empty_field);
-//                Util.markEmptyField(email, hostActivity.getAnimBlink());
                 errorExist = false;
             }
             if (!repeatEmailText.equals(emailText)) {
                 repeatEmail.setText(builder);
-//                repeatEmail.setHint("Mail does not match");
                 errorExist = false;
             }
 
@@ -244,19 +239,16 @@ public class SignUpFragment extends Fragment {
             if(!Util.isEmailValid(emailText) && !Util.isPasswordValid(passwordText)){
                 error.setText(R.string.invalid_password_mail);
                 error.setVisibility(View.VISIBLE);
-//            Util.markInvalidField(email, hostActivity.getAnimBlink());
                 errorCheck = false;
             }
             if(!Util.isEmailValid(emailText) && Util.isPasswordValid(passwordText)){
                 error.setText(R.string.invalid_mail);
                 error.setVisibility(View.VISIBLE);
-//            Util.markInvalidField(email, hostActivity.getAnimBlink());
                 errorCheck = false;
             }
             if(Util.isEmailValid(emailText) && !Util.isPasswordValid(passwordText)){
                 error.setText(R.string.invalid_password);
                 error.setVisibility(View.VISIBLE);
-//            Util.markInvalidField(email, hostActivity.getAnimBlink());
                 errorCheck = false;
             }
 
@@ -264,19 +256,20 @@ public class SignUpFragment extends Fragment {
                 return false;
             }
 
-
-
-            //TODO Make a request and write data on response. (put a prog bar)
-
             UserModel userModel = new UserModel();
             userModel.setFirst_name(firstNameText);
             userModel.setLast_name(lastNameText);
             userModel.setPassword(passwordText);
             userModel.setEmail(emailText);
-
+            if (!ServiceManager.isConnectedToInternet(hostActivity)) {
+                Toast.makeText(getActivity(), "Please connect to Internet to login", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            enableAllButtons(false);
             ServiceManager.instance().signUp(userModel, getContext(), new RequestListener() {
                 @Override
                 public void onComplete() {
+                    enableAllButtons(true);
                     actionListener.actionComplete(ACTION_REGISTERED);
                 }
             });
@@ -284,5 +277,14 @@ public class SignUpFragment extends Fragment {
 
         }
         return true;
+    }
+
+    public void enableAllButtons(boolean index){
+            firstName.setEnabled(index);
+            lastName.setEnabled(index);
+            email.setEnabled(index);
+            password.setEnabled(index);
+            signUpButton.setEnabled(index);
+            toolbarBackButton.setEnabled(index);
     }
 }

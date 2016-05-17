@@ -59,7 +59,6 @@ public class CropImageFragment extends Fragment {
         cropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO recycle old source bitmap.
                 actionListener.onCropComplete(cropImageView.getCroppedBitmap());
                 actionListener.actionComplete(ACTION_CROP_PROCESS_COMPLETE);
             }

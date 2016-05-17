@@ -15,16 +15,12 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.martha.gameguide.R;
-import com.example.martha.gameguide.listener.RequestListener;
-import com.example.martha.gameguide.maneger.GameManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,9 +122,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.invalidateOptionsMenu();
-        actionBar.setHomeButtonEnabled(false);
-        actionBar.setShowHideAnimationEnabled(true);
 
         TextView toolbarTitle = (TextView)toolbar.findViewById(R.id.toolbar_title);
         ImageView toolbarLogo = (ImageView)toolbar.findViewById(R.id.toolbar_logo);

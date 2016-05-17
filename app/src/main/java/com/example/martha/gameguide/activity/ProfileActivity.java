@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.martha.gameguide.R;
 import com.example.martha.gameguide.fragment.CropImageFragment;
@@ -26,7 +27,7 @@ public class ProfileActivity extends BaseActivity implements CropFragmentActionL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_view);
+        setContentView(R.layout.home_logged);
         initDrawer();
 
         ProfileInfoFragment profileInfoFragment = new ProfileInfoFragment();
@@ -82,7 +83,8 @@ public class ProfileActivity extends BaseActivity implements CropFragmentActionL
                 triggerBackButton();
                 break;
             case ProfileEditFragment.ACTION_CLICK_CHANGE_PASSWORD:
-                placeFragment(R.id.content_frame, new ChangePasswordFragment(), true);
+                //placeFragment(R.id.content_frame, new ChangePasswordFragment(), true);
+                Toast.makeText(this, "Change password is under construction!", Toast.LENGTH_SHORT).show();
                 break;
             case ProfileEditFragment.ACTION_CLICK_TOOLBAR_RIGHT_BTN:
                 finish();

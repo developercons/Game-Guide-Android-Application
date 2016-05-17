@@ -6,9 +6,16 @@
     android:background="@color/splash_screen">
 
     <ImageView
-        android:id="@+id/splash_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@mipmap/splash"/>
+    android:id="@+id/splash_image"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@mipmap/splash"/>
+
+    <ImageView
+        android:id="@+id/splash_logo"
+        android:layout_width="@dimen/auth_uni_pic_width"
+        android:layout_height="@dimen/auth_uni_pic_height"
+        android:src="@mipmap/logo"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

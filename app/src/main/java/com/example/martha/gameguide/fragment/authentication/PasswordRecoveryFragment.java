@@ -64,7 +64,6 @@ public class PasswordRecoveryFragment extends Fragment {
                 // TODO Check if email field is empty highlight it
                 final String emailText = email.getText().toString();
                 if(Util.isEmailValid(emailText)){
-                    // make pass recovery request and on response call actionComplete()
                     actionListener.actionComplete(ACTION_PASS_RECOVERED);
                 }
 

@@ -35,7 +35,7 @@
                     android:scaleType="centerCrop"
                     android:fitsSystemWindows="true"
                     app:layout_collapseMode="parallax"
-                    android:src="@drawable/game_pic"
+                    android:src="@drawable/collapsing_view_pic"
                     android:alpha="0.5"/>
                 <LinearLayout
                     android:layout_width="match_parent"
