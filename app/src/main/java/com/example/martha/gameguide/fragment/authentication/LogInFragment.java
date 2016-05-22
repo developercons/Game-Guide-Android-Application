@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class LogInFragment extends Fragment {
     private TextView signUp;
     private LinearLayout continueWithoutLoginBtn;
     private TextView error;
+    private ProgressBar progressBar;
     // endregion
 
     // region Constructors
@@ -75,6 +77,8 @@ public class LogInFragment extends Fragment {
         email = (EditText)view.findViewById(R.id.login_view_email_input);
         password = (EditText) view.findViewById(R.id.login_view_password);
         error = (TextView)view.findViewById(R.id.login_error);
+        progressBar = (ProgressBar)view.findViewById(R.id.login_progress_bar);
+        progressBar.setVisibility(View.INVISIBLE);
 
         initListeners();
         // endregion
@@ -110,6 +114,11 @@ public class LogInFragment extends Fragment {
                             public void onComplete() {
                             enableAllButtons(true);
                             actionListener.actionComplete(ACTION_LOG_IN_COMPLETE);
+                        }
+
+                        @Override
+                        public void onFailure() {
+                            enableAllButtons(true);
                         }
                     });
                 }
@@ -171,6 +180,10 @@ public class LogInFragment extends Fragment {
             email.setEnabled(index);
             password.setEnabled(index);
             continueWithoutLoginBtn.setEnabled(index);
+        if(!index){
+            progressBar = new ProgressBar(getContext());
+            progressBar.setVisibility(View.VISIBLE);
+        } else progressBar.setVisibility(View.INVISIBLE);
     }
 
     public boolean isInputDataValid() {

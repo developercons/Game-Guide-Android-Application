@@ -154,9 +154,17 @@ public class ServiceManager {
                                 requestListener.onComplete();
                             }
                         }
+
+                        @Override
+                        public void onFailure() {
+                            Toast.makeText(context, "Something went wrong, try again", Toast.LENGTH_SHORT).show();
+                        }
                     });
                 } else {
                     Toast.makeText(context, bundle.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                    if (requestListener != null) {
+                        requestListener.onFailure();
+                    }
                 }
             }
             @Override
@@ -237,9 +245,14 @@ public class ServiceManager {
                                 requestListener.onComplete();
                             }
                         }
+                        @Override
+                        public void onFailure() {
+                            requestListener.onFailure();
+                        }
                     });
                 } else {
                     Toast.makeText(context, bundle.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                    requestListener.onFailure();
                 }
             }
             @Override
@@ -268,7 +281,10 @@ public class ServiceManager {
                         requestListener.onComplete();
                     }
                 } else {
-                    Toast.makeText(context, "No response body exist", Toast.LENGTH_SHORT).show();
+                    if(requestListener != null){
+                        requestListener.onFailure();
+                    }
+
                 }
             }
             @Override
@@ -339,10 +355,16 @@ public class ServiceManager {
                         public void onComplete() {
                             if (listener != null) listener.onComplete();
                         }
+
+                        @Override
+                        public void onFailure() {
+                            Toast.makeText(context, "No response body exist", Toast.LENGTH_SHORT).show();
+                        }
                     });
                     GameManager.instance().replaceRequestCall(viewHolder, downloadCall);
                 } else {
                     Toast.makeText(context, "Error occurred and game is not Loaded", Toast.LENGTH_SHORT).show();
+                    if (listener != null) listener.onFailure();
                 }
             }
 
@@ -372,7 +394,7 @@ public class ServiceManager {
                     if(gamePicture != null && gamePicture.length != 0) gameRequestModel.setGamePicture(gamePicture);
                     if(listener != null) listener.onComplete();
                 } else {
-                    Toast.makeText(context, "No response body exist", Toast.LENGTH_SHORT).show();
+                    if(listener != null) listener.onFailure();
                 }
             }
 

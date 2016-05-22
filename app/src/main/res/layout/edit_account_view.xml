@@ -9,6 +9,14 @@
         android:id="@+id/edit_account_toolbar"
         />
 
+    <ProgressBar
+        android:id="@+id/edit_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.ProgressBar.Large"
+        android:indeterminateOnly="true"
+        android:layout_centerInParent="true" />
+
     <LinearLayout
         android:id="@+id/edit_account_view_profile_pic_box"
         android:layout_width="@dimen/auth_box_width"

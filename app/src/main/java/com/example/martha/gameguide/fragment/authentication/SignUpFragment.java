@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class SignUpFragment extends Fragment {
     TextView error;
     ImageView toolbarBackButton;
     SpannableStringBuilder builder;
+    ProgressBar progressBar;
     String simple = "Field is empty ";
     String colored = "*";
 
@@ -76,6 +78,8 @@ public class SignUpFragment extends Fragment {
         email = (EditText) view.findViewById(R.id.sign_up_email);
         repeatEmail = (EditText) view.findViewById(R.id.sign_up_repeat_email);
         error = (TextView)view.findViewById(R.id.sign_toast);
+        progressBar = (ProgressBar)view.findViewById(R.id.sign_up_progress_bar);
+        progressBar.setVisibility(View.INVISIBLE);
 
         // endregion
         builder = new SpannableStringBuilder();
@@ -272,6 +276,11 @@ public class SignUpFragment extends Fragment {
                     enableAllButtons(true);
                     actionListener.actionComplete(ACTION_REGISTERED);
                 }
+
+                @Override
+                public void onFailure() {
+                    enableAllButtons(true);
+                }
             });
 
 
@@ -286,5 +295,9 @@ public class SignUpFragment extends Fragment {
             password.setEnabled(index);
             signUpButton.setEnabled(index);
             toolbarBackButton.setEnabled(index);
+        if(!index){
+            progressBar = new ProgressBar(getContext());
+            progressBar.setVisibility(View.VISIBLE);
+        } else progressBar.setVisibility(View.INVISIBLE);
     }
 }

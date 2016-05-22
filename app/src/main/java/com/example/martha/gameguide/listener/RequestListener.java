@@ -5,4 +5,5 @@ package com.example.martha.gameguide.listener;
  */
 public interface RequestListener  {
     void onComplete();
+    void onFailure();
 }

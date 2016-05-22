@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,8 @@ public class ProfileEditFragment extends Fragment {
     private ImageView toolbarLeftButton;
     private ImageView toolbarRightButton;
 
+    private ProgressBar progressBar;
+
 
     public ProfileEditFragment() {
     }
@@ -88,6 +91,8 @@ public class ProfileEditFragment extends Fragment {
         profilePicView = (ImageView)view.findViewById(R.id.edit_account_view_profile_picture);
         saveButton = (Button)view.findViewById(R.id.edit_account_view_save_button);
         changeProfilePicButton = (TextView)view.findViewById(R.id.change_photo);
+        progressBar = (ProgressBar) view.findViewById(R.id.edit_progress_bar);
+        progressBar.setVisibility(View.INVISIBLE);
 
         if (hostActivity.getTempProfPic() != null) {
             profilePicView.setImageBitmap(hostActivity.getTempProfPic());
@@ -204,6 +209,14 @@ public class ProfileEditFragment extends Fragment {
                                         });
                                         actionListener.actionComplete(ACTION_SAVE_PROFILE_COMPLETE);
                                     }
+                                    @Override
+                                    public void onFailure() {
+                                        hostActivity.runOnUiThread(new Runnable() {
+                                            public void run() {
+                                                enableAllButtons(true);
+                                            }
+                                        });
+                                    }
                                 });
                     }
                 });
@@ -230,5 +243,9 @@ public class ProfileEditFragment extends Fragment {
         changePassword.setEnabled(index);
         toolbarLeftButton.setEnabled(index);
         toolbarRightButton.setEnabled(index);
+        if(!index){
+            progressBar = new ProgressBar(getContext());
+            progressBar.setVisibility(View.VISIBLE);
+        } else progressBar.setVisibility(View.INVISIBLE);
     }
 }

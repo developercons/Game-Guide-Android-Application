@@ -57,6 +57,11 @@ public class GameListAdapter extends RecyclerView.Adapter<GameCardViewHolder>{
             public void onComplete() {
                 viewHolder.initialise(gameList.get(pos));
             }
+
+            @Override
+            public void onFailure() {
+
+            }
         });
     }
     @Override

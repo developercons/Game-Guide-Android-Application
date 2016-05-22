@@ -20,9 +20,6 @@ import com.example.martha.gameguide.activity.HomeActivity;
 import com.example.martha.gameguide.adapter.GameListAdapter;
 import com.example.martha.gameguide.listener.FragmentActionListener;
 import com.example.martha.gameguide.maneger.UserManager;
-import com.example.martha.gameguide.model.GameModel;
-
-import java.util.ArrayList;
 
 /**
  * Created by Martha on 4/25/2016.
@@ -35,8 +32,6 @@ public class GameRecyclerListFragment extends Fragment{
     private FragmentActionListener fragmentActionListener;
     private Toolbar toolBar;
     private GameListAdapter adapter;
-
-
 
     public GameRecyclerListFragment() {
     }

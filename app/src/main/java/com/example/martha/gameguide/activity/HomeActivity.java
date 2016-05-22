@@ -47,6 +47,11 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
                 mDrawerList.setItemChecked(0, true);
                 drawerItemClicked(0);
             }
+
+            @Override
+            public void onFailure() {
+                Toast.makeText(HomeActivity.this, "MAIN LOAD REQUEST FAILED!", Toast.LENGTH_SHORT);
+            }
         });
 
     }

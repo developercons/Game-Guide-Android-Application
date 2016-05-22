@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.martha.gameguide.R;
@@ -25,6 +26,7 @@ public class GameCardViewHolder extends RecyclerView.ViewHolder implements View.
     private ArrayList<ImageView> stars;
     private TextView reviews;
     private TextView ageRange;
+    private ProgressBar progressBar;
 
     public GameCardViewHolder(View itemView) {
         super(itemView);
@@ -40,6 +42,8 @@ public class GameCardViewHolder extends RecyclerView.ViewHolder implements View.
         stars.add((ImageView) itemView.findViewById(R.id.star5));
         reviews = (TextView)itemView.findViewById(R.id.reviews_quantity);
         ageRange = (TextView)itemView.findViewById(R.id.age_range);
+        progressBar = (ProgressBar)itemView.findViewById(R.id.card_progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -62,6 +66,7 @@ public class GameCardViewHolder extends RecyclerView.ViewHolder implements View.
             @Override
             public void onComplete(Bitmap bitmap) {
                 gamePic.setImageBitmap(bitmap);
+                progressBar.setVisibility(View.INVISIBLE);
             }
             @Override
             public void onFail() {
@@ -82,6 +87,7 @@ public class GameCardViewHolder extends RecyclerView.ViewHolder implements View.
             v.setImageBitmap(null);
         }
         gamePic.setImageBitmap(null);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
 

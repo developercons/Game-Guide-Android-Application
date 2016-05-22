@@ -102,6 +102,11 @@ public class ProfileInfoFragment extends Fragment {
                     public void onComplete() {
                         actionListener.actionComplete(ACTION_LOG_OUT_COMPLETE);
                     }
+
+                    @Override
+                    public void onFailure() {
+
+                    }
                 });
             }
         });

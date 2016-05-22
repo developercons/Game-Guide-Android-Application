@@ -1,6 +1,7 @@
 package com.example.martha.gameguide.maneger;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.martha.gameguide.listener.RequestListener;
 import com.example.martha.gameguide.model.GameModel;
@@ -57,8 +58,18 @@ public class GameManager {
                             --queue;
                             if (queue == 0) requestListener.onComplete();
                         }
+
+                        @Override
+                        public void onFailure() {
+                            Toast.makeText(context, "Something went wrong while loading game list", Toast.LENGTH_SHORT).show();
+                        }
                     });
                 }
+            }
+
+            @Override
+            public void onFailure() {
+                Toast.makeText(context, "Something went wrong while loading category list", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -70,6 +81,11 @@ public class GameManager {
             public void onComplete() {
                 if (requestListener != null) requestListener.onComplete();
                 enquedGameCallMap.remove(viewHolder);
+            }
+
+            @Override
+            public void onFailure() {
+                if (requestListener != null) requestListener.onFailure();
             }
         });
         enquedGameCallMap.put(viewHolder, tempCall);

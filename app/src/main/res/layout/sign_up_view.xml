@@ -8,6 +8,14 @@
     <include layout="@layout/toolbar_view"
         android:id="@+id/sign_up_toolbar"/>
 
+    <ProgressBar
+        android:id="@+id/sign_up_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.ProgressBar.Large"
+        android:indeterminateOnly="true"
+        android:layout_centerInParent="true" />
+
 
     <EditText
         android:id="@+id/sign_up_view_user_name"
