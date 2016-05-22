@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.example.martha.gameguide.R;
 import com.example.martha.gameguide.adapter.GameListAdapter;
+import com.example.martha.gameguide.animation.FlipHorizontal;
+import com.example.martha.gameguide.fragment.SplashFragment;
 import com.example.martha.gameguide.fragment.game.GameRecyclerListFragment;
 import com.example.martha.gameguide.listener.FragmentActionListener;
 import com.example.martha.gameguide.listener.RequestListener;
@@ -25,34 +27,14 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_logged);
 
-
 //        GameExpandedInfoFragment gameExpandedInfoFragment = new GameExpandedInfoFragment();
 
+        placeFragment(R.id.content_frame, new SplashFragment(), false);
+
         init();
-        placeFragment(R.id.content_frame, new GameRecyclerListFragment(), false);
-        if(!UserManager.instance().isLoggedIn()){
-            startActivity(new Intent(HomeActivity.this, AuthActivity.class));
-        }else {
-            ServiceManager.instance().getUser(UserManager.instance().getCurrentUser().getToken(),
-                    this, null);
-        }
+        checkIfLogged();
+        loadGames();
 
-
-        GameManager.instance().loadCategoryList(this, new RequestListener() {
-            @Override
-            public void onComplete() {
-                mItemTitles.clear();
-                mItemTitles.addAll(GameManager.instance().getCategoryList());
-                Toast.makeText(HomeActivity.this, "MAIN LOAD REQUEST COMPLETE!", Toast.LENGTH_SHORT);
-                mDrawerList.setItemChecked(0, true);
-                drawerItemClicked(0);
-            }
-
-            @Override
-            public void onFailure() {
-                Toast.makeText(HomeActivity.this, "MAIN LOAD REQUEST FAILED!", Toast.LENGTH_SHORT);
-            }
-        });
 
     }
 
@@ -68,6 +50,36 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
             }
         });
     }
+
+    public void checkIfLogged(){
+        if(!UserManager.instance().isLoggedIn()){
+            startActivity(new Intent(HomeActivity.this, AuthActivity.class));
+        }else {
+            ServiceManager.instance().getUser(UserManager.instance().getCurrentUser().getToken(),
+                    this, null);
+        }
+
+    }
+
+    public void loadGames(){
+        GameManager.instance().loadCategoryList(this, new RequestListener() {
+            @Override
+            public void onComplete() {
+                mItemTitles.clear();
+                mItemTitles.addAll(GameManager.instance().getCategoryList());
+                Toast.makeText(HomeActivity.this, "MAIN LOAD REQUEST COMPLETE!", Toast.LENGTH_SHORT).show();
+                mDrawerList.setItemChecked(0, true);
+                drawerItemClicked(0);
+            }
+
+            @Override
+            public void onFailure() {
+                Toast.makeText(HomeActivity.this, "MAIN LOAD REQUEST FAILED!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
     private void drawerItemClicked(long id) {
         if (id != lastSelectedItemId) {
             lastSelectedItemId = id;
@@ -90,6 +102,9 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
                 break;
             case GameRecyclerListFragment.TOOLBAR_LEFT_BUTTON_CLICKED:
                 mDrawerLayout.openDrawer(GravityCompat.START);
+                break;
+            case FlipHorizontal.ACTION_FLIP_ANIMATION_COMPLETE:
+                placeFragment(R.id.content_frame, new GameRecyclerListFragment(), false);
                 break;
         }
     }

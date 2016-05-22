@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:screenOrientation="portrait">
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name=".activity.HomeActivity">
             android:screenOrientation="portrait"
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,12 +33,6 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
             android:screenOrientation="portrait"
             android:label="@string/login_view_app_name" >
-        </activity>
-        <activity
-            android:name=".activity.HomeActivity"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
-            android:screenOrientation="portrait"
-            android:label="@string/login_view_app_name">
         </activity>
     </application>
 
