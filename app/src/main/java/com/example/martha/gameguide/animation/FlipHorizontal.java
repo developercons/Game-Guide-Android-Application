@@ -14,32 +14,29 @@ import com.example.martha.gameguide.listener.FragmentActionListener;
  * Created by Martha on 5/22/2016.
  */
 public class FlipHorizontal extends Animation{
-    public static final int PIVOT_CENTER = 0, PIVOT_LEFT = 1, PIVOT_RIGHT = 2;
+    public static final int PIVOT_CENTER = 1, PIVOT_LEFT = 2, PIVOT_RIGHT = 3, PIVOT_NONE = 0;
     public static final String ACTION_FLIP_ANIMATION_COMPLETE = "action_flip_animation_complete";
 
 
     public AnimatorSet getAnimation(View rootView, long duration, float degrees, int pivot, final FragmentActionListener listener){
         float pivotX, pivotY, viewWidth = rootView.getWidth(), viewHeight = rootView.getHeight();
         switch (pivot) {
+            case PIVOT_NONE:
+                break;
             case PIVOT_LEFT:
-                pivotX = 0f;
-                pivotY = viewHeight / 2;
+                rootView.setPivotX(0);
+                rootView.setPivotY(viewHeight / 2);
                 break;
             case PIVOT_RIGHT:
-                pivotX = viewWidth;
-                pivotY = viewHeight / 2;
+                rootView.setPivotX(viewWidth);
+                rootView.setPivotY(viewHeight / 2);
                 break;
             case PIVOT_CENTER:
-                pivotX = viewWidth / 2;
-                pivotY = viewHeight / 2;
+                rootView.setPivotX(viewWidth / 2);
+                rootView.setPivotY(viewHeight / 2);
                 break;
-            default:
-                pivotX = viewWidth / 2;
-                pivotY = viewHeight / 2;
-                break;
+
         }
-        rootView.setPivotX(pivotX);
-        rootView.setPivotY(pivotY);
         AnimatorSet flipSet = new AnimatorSet();
         flipSet.play(ObjectAnimator.ofFloat(rootView, View.ROTATION_Y, rootView.getRotationY() + degrees));
         flipSet.setInterpolator(new AccelerateDecelerateInterpolator());

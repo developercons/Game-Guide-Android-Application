@@ -7,5 +7,11 @@
     <dimen name="rating_star_size">20dip</dimen>
     <dimen name="small_text_size">18sp</dimen>
     <dimen name="large_text_size">30sp</dimen>
-    <dimen name="search_card_view_height">300dip</dimen>
+    <dimen name="card_view_height">350dip</dimen>
+    <dimen name="card_view_bottom_margin">13dip</dimen>
+
+
+    <dimen name="profile_top_margin">200dp</dimen>
+
+    <dimen name="drawer">500dp</dimen>
 </resources>

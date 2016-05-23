@@ -39,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+       super.onCreate(savedInstanceState);
 
         initBlinkAnimation();
     }
@@ -47,9 +47,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void initDrawer() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-        mDrawerList.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item_example, mItemTitles));
+        mDrawerList.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, mItemTitles));
     }
-
+//
 
     private void initBlinkAnimation() {
         animBlink = AnimationUtils.loadAnimation(getApplicationContext(),
@@ -64,7 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if(addToBackStack){
             fragmentTransaction.addToBackStack(fragmentTag);
         }
-        fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
     }
     protected void triggerBackButton() {
         getSupportFragmentManager().popBackStack();

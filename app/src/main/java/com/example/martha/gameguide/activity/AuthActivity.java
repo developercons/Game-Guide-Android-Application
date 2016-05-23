@@ -30,7 +30,7 @@ public class AuthActivity extends BaseActivity implements FragmentActionListener
         fragmentManager = getSupportFragmentManager();
         // endregion
 
-        placeFragment(R.id.main_layout, logInFragment, false);
+        placeFragment(R.id.home_unlogged, logInFragment, false);
 
     }
 
@@ -39,21 +39,21 @@ public class AuthActivity extends BaseActivity implements FragmentActionListener
         switch (actionType) {
             case LogInFragment.ACTION_CLICK_SIGN_UP:
                 Toast.makeText(this, "Sign Up button pressed", Toast.LENGTH_SHORT).show();
-                placeFragment(R.id.main_layout, new SignUpFragment(), true);
+                placeFragment(R.id.home_unlogged, new SignUpFragment(), true);
                 break;
             case LogInFragment.ACTION_LOG_IN_COMPLETE:
                 finish();
                 break;
             case LogInFragment.ACTION_CLICK_PASS_RECOVERY:
                 Toast.makeText(this, "Password recovery button pressed", Toast.LENGTH_SHORT).show();
-                placeFragment(R.id.main_layout, new PasswordRecoveryFragment(), true);
+                placeFragment(R.id.home_unlogged, new PasswordRecoveryFragment(), true);
                 break;
             case LogInFragment.ACTION_CLICK_CONTINUE_WITHOUT_LOG_IN:
                 finish();
                 break;
             case PasswordRecoveryFragment.ACTION_PASS_RECOVERED:
                 Toast.makeText(this, "Password successfully recovered", Toast.LENGTH_SHORT).show();
-                placeFragment(R.id.main_layout, new LogInFragment(), true);
+                placeFragment(R.id.home_unlogged, new LogInFragment(), true);
                 break;
             case PasswordRecoveryFragment.ACTION_CLICK_PASS_RECOVER_BACK:
                 Toast.makeText(this, "Navigated Back", Toast.LENGTH_SHORT).show();

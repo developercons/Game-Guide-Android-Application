@@ -31,9 +31,7 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
 
         placeFragment(R.id.content_frame, new SplashFragment(), false);
 
-        init();
-        checkIfLogged();
-        loadGames();
+
 
 
     }
@@ -104,6 +102,9 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 break;
             case FlipHorizontal.ACTION_FLIP_ANIMATION_COMPLETE:
+                init();
+                checkIfLogged();
+                loadGames();
                 placeFragment(R.id.content_frame, new GameRecyclerListFragment(), false);
                 break;
         }

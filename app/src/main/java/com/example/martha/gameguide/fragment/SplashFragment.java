@@ -37,7 +37,7 @@ public class SplashFragment extends Fragment {
         View view = inflater.inflate(R.layout.splash, container, false);
         ImageView logo = (ImageView)view.findViewById(R.id.splash_logo);
         FlipHorizontal flipAnimation = new FlipHorizontal();
-        AnimatorSet animatorSet = flipAnimation.getAnimation(logo, 4000, (8*360), FlipHorizontal.PIVOT_CENTER, actionListener);
+        AnimatorSet animatorSet = flipAnimation.getAnimation(logo, 5000, (5*360), 5, actionListener);
         animatorSet.start();
 
         return view;

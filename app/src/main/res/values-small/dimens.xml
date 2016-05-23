@@ -11,6 +11,9 @@
     <!-- Sign up page dimensions -->
     <dimen name="sign_up_button_top_margin">30dp</dimen>
 
+    <!-- Profile page dimensions -->
+    <dimen name="profile_top_margin">70dp</dimen>
+
 
     <!-- Universal dimensions -->
     <dimen name="auth_uni_hint_text_size">20sp</dimen>
@@ -22,10 +25,16 @@
     <dimen name="auth_uni_pic_width">100dp</dimen>
     <dimen name="auth_uni_pic_height">140dp</dimen>
     <dimen name="toolbar_height">50dp</dimen>
+    <dimen name="toolbar_image_size">47dp</dimen>
+    <dimen name="drawer_text_size">25sp</dimen>
 
     <dimen name="rating_star_size">12dip</dimen>
     <dimen name="small_text_size">10sp</dimen>
     <dimen name="large_text_size">15sp</dimen>
+    <dimen name="card_view_height">200dip</dimen>
+    <dimen name="card_view_bottom_margin">13dip</dimen>
+
+    <dimen name="drawer">250dp</dimen>
 
 
 
