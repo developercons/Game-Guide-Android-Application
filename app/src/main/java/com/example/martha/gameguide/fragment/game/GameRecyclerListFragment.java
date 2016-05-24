@@ -35,6 +35,7 @@ public class GameRecyclerListFragment extends Fragment{
     private FragmentActionListener fragmentActionListener;
     private Toolbar toolBar;
     private GameListAdapter adapter;
+    private TextView toolbarTitle;
     // endregion
 
     // region ctor
@@ -92,7 +93,7 @@ public class GameRecyclerListFragment extends Fragment{
             }
         });
         toolbar.setBackgroundResource(R.color.white);
-        TextView toolbarTitle = (TextView)toolbar.findViewById(R.id.toolbar_title);
+        toolbarTitle = (TextView)toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTextColor(ContextCompat.getColor(toolbarTitle.getContext(), R.color.toolbar_title_color));
         return toolbar;
     }
@@ -104,5 +105,9 @@ public class GameRecyclerListFragment extends Fragment{
         else rightIcon = R.drawable.login;
         rightButton.setImageResource(rightIcon);
         rightButton.setVisibility(View.VISIBLE);
+    }
+
+    public void refreshToolbarTitle(String text){
+        toolbarTitle.setText(text);
     }
 }

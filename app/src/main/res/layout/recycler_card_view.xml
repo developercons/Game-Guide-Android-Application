@@ -40,7 +40,8 @@
                 android:layout_width="match_parent"
                 android:scaleType="centerCrop"
                 android:nestedScrollingEnabled="true"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:cropToPadding="true"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -52,31 +53,43 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#FFF600"
+                    android:textColor="#FFFF0A"
                     android:textSize="@dimen/large_text_size"
                     android:layout_above="@+id/category"
                     android:id="@+id/game_name"
                     android:layout_marginLeft="3dp"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="2.5"
+                    android:shadowDx="4"
+                    android:shadowDy="4"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#FFF600"
+                    android:textColor="#FFFF0A"
                     android:textSize="@dimen/small_text_size"
                     android:id="@+id/category"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="3dp"/>
+                    android:layout_marginLeft="3dp"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="2.5"
+                    android:shadowDx="4"
+                    android:shadowDy="4"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#FFF600"
+                    android:textColor="#FFFF0A"
                     android:textSize="@dimen/small_text_size"
                     android:id="@+id/expert_definition"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_alignParentEnd="true"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="2.5"
+                    android:shadowDx="4"
+                    android:shadowDy="4"/>
             </RelativeLayout>
 
 

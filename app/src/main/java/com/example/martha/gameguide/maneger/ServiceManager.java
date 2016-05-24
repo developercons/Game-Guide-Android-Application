@@ -58,7 +58,8 @@ public class ServiceManager {
     // region Instance fields
     private HashMap<String, Object> requestData;
     public Gson gson = new GsonBuilder().create();
-    public final String BASE_URL = "http://gameguideserver-margin.rhcloud.com/webapi/";
+    public final String BASE_URL = "http://192.168.1.200:8080/webapi/";
+    //public final String BASE_URL = "http://gameguideserver-margin.rhcloud.com/webapi/";
     public Retrofit retrofit;
     private UserService userService;
     private GameService gameService;

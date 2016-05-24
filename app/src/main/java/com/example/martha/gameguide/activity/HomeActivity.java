@@ -26,6 +26,7 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
 
     //region Instance Fields
     private GameListAdapter adapter;
+    private GameRecyclerListFragment gameRecyclerListFragment;
     // endregion
 
     @Override
@@ -74,6 +75,7 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
                 mDrawerList.setItemChecked(0, true);
                 drawerItemClicked(0);
             }
+
             @Override
             public void onFailure() {
                 Toast.makeText(HomeActivity.this, "MAIN LOAD REQUEST FAILED!", Toast.LENGTH_SHORT).show();
@@ -85,6 +87,9 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
         if (id != lastSelectedItemId) {
             lastSelectedItemId = id;
             String category = GameManager.instance().getCategoryList().get((int)id);
+            if(gameRecyclerListFragment != null){
+                gameRecyclerListFragment.refreshToolbarTitle(category);
+            }
             adapter.setGameList(GameManager.instance().getGameIdMap().get(category), category);
             mDrawerLayout.closeDrawers();
         }
@@ -107,7 +112,8 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
                 init();
                 checkIfLogged();
                 loadGames();
-                placeFragment(R.id.content_frame, new GameRecyclerListFragment(), false);
+                gameRecyclerListFragment = new GameRecyclerListFragment();
+                placeFragment(R.id.content_frame, gameRecyclerListFragment, false);
                 break;
         }
     }
