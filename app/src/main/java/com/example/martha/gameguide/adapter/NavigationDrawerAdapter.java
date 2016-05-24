@@ -27,7 +27,7 @@ public class NavigationDrawerAdapter extends BaseAdapter{
         this.drawerList = new ArrayList<>();
     }
 
-    public void setDrawerItems(ArrayList<NavDrawerItemModel> list){
+    public void setDrawerItems(List<NavDrawerItemModel> list){
         drawerList.clear();
         drawerList.addAll(list);
     }

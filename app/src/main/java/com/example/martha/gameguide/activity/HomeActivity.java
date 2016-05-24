@@ -17,6 +17,10 @@ import com.example.martha.gameguide.listener.RequestListener;
 import com.example.martha.gameguide.maneger.GameManager;
 import com.example.martha.gameguide.maneger.ServiceManager;
 import com.example.martha.gameguide.maneger.UserManager;
+import com.example.martha.gameguide.model.NavDrawerItemModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends BaseActivity implements FragmentActionListener{
 
@@ -63,8 +67,13 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
         GameManager.instance().loadCategoryList(this, new RequestListener() {
             @Override
             public void onComplete() {
-                mItemTitles.clear();
-                mItemTitles.addAll(GameManager.instance().getCategoryList());
+                List<NavDrawerItemModel> currentList = new ArrayList<>();
+                List<String> titlesList = GameManager.instance().getCategoryList();
+                for (int i = 0; i < titlesList.size(); i++) {
+                    currentList.add(new NavDrawerItemModel(R.mipmap.logo_botton, titlesList.get(i)));
+                }
+                drawerAdapter.setDrawerItems(currentList);
+                mDrawerList.setAdapter(drawerAdapter);
                 Toast.makeText(HomeActivity.this, "MAIN LOAD REQUEST COMPLETE!", Toast.LENGTH_SHORT).show();
                 mDrawerList.setItemChecked(0, true);
                 drawerItemClicked(0);
@@ -83,6 +92,7 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
             lastSelectedItemId = id;
             String category = GameManager.instance().getCategoryList().get((int)id);
             adapter.setGameList(GameManager.instance().getGameIdMap().get(category), category);
+            mDrawerLayout.closeDrawers();
         }
     }
 

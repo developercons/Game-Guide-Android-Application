@@ -14,12 +14,12 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.martha.gameguide.R;
+import com.example.martha.gameguide.adapter.NavigationDrawerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private Animation animBlink;
     protected DrawerLayout mDrawerLayout;
     protected ListView mDrawerList;
+    protected NavigationDrawerAdapter drawerAdapter;
     protected List<String> mItemTitles = new ArrayList<>();
     protected long lastSelectedItemId = -1;
 
@@ -47,7 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void initDrawer() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-        mDrawerList.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, mItemTitles));
+        drawerAdapter = new NavigationDrawerAdapter(this);
     }
 //
 
