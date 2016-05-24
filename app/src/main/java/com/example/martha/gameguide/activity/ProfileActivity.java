@@ -20,27 +20,28 @@ import com.example.martha.gameguide.maneger.UserManager;
  */
 public class ProfileActivity extends BaseActivity implements CropFragmentActionListener {
 
+    // region Instance fields
     private Bitmap currentProfPic;
     private Bitmap tempProfPic;
-
+    // endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_logged);
+
         initDrawer();
-
-        ProfileInfoFragment profileInfoFragment = new ProfileInfoFragment();
-
         loadCurrentProfPic();
-        placeFragment(R.id.content_frame, profileInfoFragment, false);
+        placeFragment(R.id.content_frame, new ProfileInfoFragment(), false);
     }
+
     private void loadCurrentProfPic() {
         if (currentProfPic == null) {
             byte[] avatarBytes = UserManager.instance().getAvatarBytes();
             currentProfPic = BitmapFactory.decodeByteArray(avatarBytes, 0, avatarBytes.length);
         }
     }
+
     @Override
     protected void onStop() {
         super.onStop();

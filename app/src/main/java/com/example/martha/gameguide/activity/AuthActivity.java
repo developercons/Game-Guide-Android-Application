@@ -25,13 +25,8 @@ public class AuthActivity extends BaseActivity implements FragmentActionListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_unlogged);
 
-        // region Fragments
-        LogInFragment logInFragment = new LogInFragment();
+        placeFragment(R.id.home_unlogged, new LogInFragment(), false);
         fragmentManager = getSupportFragmentManager();
-        // endregion
-
-        placeFragment(R.id.home_unlogged, logInFragment, false);
-
     }
 
     @Override
@@ -66,7 +61,6 @@ public class AuthActivity extends BaseActivity implements FragmentActionListener
             case SignUpFragment.ACTION_REGISTERED:
                 finish();
                 break;
-
         }
     }
 }

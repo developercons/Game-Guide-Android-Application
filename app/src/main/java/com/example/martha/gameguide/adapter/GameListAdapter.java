@@ -19,13 +19,18 @@ import java.util.List;
  * Created by Martha on 4/25/2016.
  */
 public class GameListAdapter extends RecyclerView.Adapter<GameCardViewHolder>{
+
+    // region Instance fields
     private Context context;
     private List<GameModel> gameList;
+    // endregion
 
+    // region ctor
     public GameListAdapter(Context context) {
         this.context = context;
         gameList = new ArrayList<>();
     }
+    // endregion
 
     public void setGameList(List<Long> gameIdList, String category) {
         this.gameList.clear();
@@ -34,7 +39,6 @@ public class GameListAdapter extends RecyclerView.Adapter<GameCardViewHolder>{
         }
         notifyDataSetChanged();
     }
-
 
     @Override
     public GameCardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -57,13 +61,12 @@ public class GameListAdapter extends RecyclerView.Adapter<GameCardViewHolder>{
             public void onComplete() {
                 viewHolder.initialise(gameList.get(pos));
             }
-
             @Override
             public void onFailure() {
-
             }
         });
     }
+
     @Override
     public int getItemCount() {
         if(gameList != null){

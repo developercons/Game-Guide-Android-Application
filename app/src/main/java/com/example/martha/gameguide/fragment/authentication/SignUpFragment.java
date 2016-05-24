@@ -33,32 +33,32 @@ import com.example.martha.gameguide.util.Util;
  */
 public class SignUpFragment extends Fragment {
 
+    // region Static fileds
     public static final String ACTION_REGISTERED = "action_registered";
     public static final String ACTION_SIGN_UP_BACK = "action_sign_up_back";
+    // endregion
 
     // region Instance fields
     private AuthActivity hostActivity;
     private FragmentActionListener actionListener;
-    EditText firstName;
-    EditText lastName;
-    EditText password;
-    EditText email;
-    EditText repeatEmail;
-    Button signUpButton;
-    TextView error;
-    ImageView toolbarBackButton;
-    SpannableStringBuilder builder;
-    ProgressBar progressBar;
-    String simple = "Field is empty ";
-    String colored = "*";
-
+    private EditText firstName;
+    private EditText lastName;
+    private EditText password;
+    private EditText email;
+    private EditText repeatEmail;
+    private Button signUpButton;
+    private TextView error;
+    private ImageView toolbarBackButton;
+    private SpannableStringBuilder builder;
+    private ProgressBar progressBar;
+    private String simple = "Field is empty ";
+    private String colored = "*";
     // endregion
 
-    // region Constructors
+    // region ctor
     public SignUpFragment() {
     }
     // endregion
-
 
     @Override
     public void onAttach(Context context) {
@@ -80,8 +80,20 @@ public class SignUpFragment extends Fragment {
         error = (TextView)view.findViewById(R.id.sign_toast);
         progressBar = (ProgressBar)view.findViewById(R.id.sign_up_progress_bar);
         progressBar.setVisibility(View.INVISIBLE);
-
         // endregion
+
+        // region Attributes
+        initSingUpBtnListener(signUpButton);
+        buildSpan();
+        hostActivity.manageKeyPadActions(view, null, null, null);
+        toolbarBackButton = initToolbar(view);
+        initListeners();
+        // endregion
+
+        return view;
+    }
+
+    private void buildSpan(){
         builder = new SpannableStringBuilder();
         builder.append(simple);
         int start = builder.length();
@@ -89,13 +101,6 @@ public class SignUpFragment extends Fragment {
         int end = builder.length();
         builder.setSpan(new ForegroundColorSpan(Color.RED), start, end,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        initSingUpBtnListener(signUpButton);
-        hostActivity.manageKeyPadActions(view, null, null, null);
-        toolbarBackButton = initToolbar(view);
-        initListeners();
-
-        return view;
     }
 
     private void initSingUpBtnListener(Button signUpButton) {
@@ -107,10 +112,10 @@ public class SignUpFragment extends Fragment {
                     return;
                 }
                 handleSignUpRequest();
-
             }
         });
     }
+
     private ImageView initToolbar(View rootView) {
         Toolbar toolbar = hostActivity.makeToolbar(rootView.findViewById(R.id.sign_up_toolbar), getString(R.string.sign_up_toolbar_title),
                 R.drawable.back, null, null);
@@ -141,7 +146,6 @@ public class SignUpFragment extends Fragment {
                 firstName.setHint(R.string.hint_name);
             }
         });
-
         lastName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -179,7 +183,6 @@ public class SignUpFragment extends Fragment {
                 email.setHint(R.string.hint_email);
             }
         });
-
         password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -200,13 +203,12 @@ public class SignUpFragment extends Fragment {
         });
     }
 
-
-
     public boolean handleSignUpRequest() {
         View tempView = getView();
         boolean errorExist = true;
         if (tempView != null) {
 
+            // region Input fields check
             String firstNameText = firstName.getText().toString();
             String lastNameText = lastName.getText().toString();
             String passwordText = password.getText().toString();
@@ -259,7 +261,9 @@ public class SignUpFragment extends Fragment {
             if(!errorCheck){
                 return false;
             }
+            // endregion
 
+            // region Build Request
             UserModel userModel = new UserModel();
             userModel.setFirst_name(firstNameText);
             userModel.setLast_name(lastNameText);
@@ -282,7 +286,7 @@ public class SignUpFragment extends Fragment {
                     enableAllButtons(true);
                 }
             });
-
+            // endregion
 
         }
         return true;

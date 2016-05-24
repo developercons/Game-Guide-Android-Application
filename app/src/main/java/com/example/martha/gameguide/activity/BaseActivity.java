@@ -21,41 +21,36 @@ import android.widget.TextView;
 import com.example.martha.gameguide.R;
 import com.example.martha.gameguide.adapter.NavigationDrawerAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * Created by Martha on 4/7/2016.
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
+    // region Instance fields
     private Animation animBlink;
     protected DrawerLayout mDrawerLayout;
     protected ListView mDrawerList;
     protected NavigationDrawerAdapter drawerAdapter;
-    protected List<String> mItemTitles = new ArrayList<>();
     protected long lastSelectedItemId = -1;
-
+    // endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
-
         initBlinkAnimation();
+    }
+
+    private void initBlinkAnimation() {
+        animBlink = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.blink);
+        animBlink.setBackgroundColor(Color.RED);
     }
 
     protected void initDrawer() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         drawerAdapter = new NavigationDrawerAdapter(this);
-    }
-//
-
-    private void initBlinkAnimation() {
-        animBlink = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.blink);
-        animBlink.setBackgroundColor(Color.RED);
     }
 
     protected void placeFragment(int containerViewId, Fragment fragment, boolean addToBackStack) {
@@ -70,7 +65,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void triggerBackButton() {
         getSupportFragmentManager().popBackStack();
     }
-
 
     public void clearFragmentBackStack() {
         FragmentManager fm = getSupportFragmentManager();
@@ -139,7 +133,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         else toolbarRightButton.setVisibility(View.INVISIBLE);
         return toolbar;
     }
-
 
     public Animation getAnimBlink() {
         return animBlink;

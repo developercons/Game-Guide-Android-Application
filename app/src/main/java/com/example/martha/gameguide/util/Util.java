@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.util.Patterns;
@@ -72,7 +71,6 @@ public class Util {
 
     public static Bitmap decodeSampledBitmapFromStream(InputStream imageStream,
                                                        int reqWidth, int reqHeight) {
-
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeStream(imageStream, null, options);
@@ -82,13 +80,13 @@ public class Util {
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeStream(imageStream, null, options);
     }
+
     public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
         int wdif = options.outWidth / reqWidth;
         int hdif = options.outHeight / reqHeight;
 
         return Math.max(wdif, hdif);
     }
-
 
     public static void cacheObject(Context context, String key, Object object) {
         try {
@@ -117,16 +115,18 @@ public class Util {
         return null;
     }
 
-
     public static boolean isPhoneValid(String phoneNumber) {
         return Patterns.PHONE.matcher(phoneNumber).matches();
     }
+
     public static boolean isEmailValid(String email) {
         return email != null && Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
+
     public static boolean isPasswordValid(String password) {
         return password != null && password.matches("[a-zA-Z0-9]+");
     }
+
     public static boolean isFieldValid(String field, int charQuantity){
         return field != null && !field.isEmpty();
     }
@@ -136,6 +136,7 @@ public class Util {
         field.setTextColor(ContextCompat.getColor(field.getContext(), R.color.error_red));
         field.startAnimation(animation);
     }
+
     public static void markEmptyField(TextView field, Animation animation) {
         field.setAnimation(animation);
         field.startAnimation(animation);

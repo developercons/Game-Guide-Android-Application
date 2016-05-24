@@ -15,23 +15,25 @@ import java.io.ByteArrayOutputStream;
  */
 public class UserManager {
 
+    // region Static fields
     public static final String USER_CACHE_KEY = "user";
+    // endregion
 
-    private static UserManager instance = new UserManager();
-
+    // region Instance fileds
     private UserModel currentUser;
     private byte [] defaultProfPicBytes;
+    // endregion
 
+    private static UserManager instance = new UserManager();
     public static UserManager instance() {
         return instance;
     }
 
+    // region ctor
     private UserManager() {
         currentUser = new UserModel();
     }
-
-
-
+    // endregion
 
     public void initUserModel(Context context) {
         readUserModel(context);
@@ -74,15 +76,13 @@ public class UserManager {
         return currentUser.getToken() != null;
     }
 
-
     public void deleteUserData(Context context){
         Util.cacheObject(context, USER_CACHE_KEY, null);
     }
+
     public UserModel getCurrentUser() {
         return currentUser;
     }
-
-
 
     public void setUdid(String udid){
         currentUser.setUdid(udid);

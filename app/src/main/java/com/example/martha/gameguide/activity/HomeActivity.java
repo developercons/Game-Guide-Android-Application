@@ -24,7 +24,9 @@ import java.util.List;
 
 public class HomeActivity extends BaseActivity implements FragmentActionListener{
 
-    GameListAdapter adapter;
+    //region Instance Fields
+    private GameListAdapter adapter;
+    // endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +36,7 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
 //        GameExpandedInfoFragment gameExpandedInfoFragment = new GameExpandedInfoFragment();
 
         placeFragment(R.id.content_frame, new SplashFragment(), false);
-
-
-
-
     }
-
 
     private void init() {
         adapter = new GameListAdapter(this);
@@ -53,17 +50,16 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
         });
     }
 
-    public void checkIfLogged(){
+    private void checkIfLogged(){
         if(!UserManager.instance().isLoggedIn()){
             startActivity(new Intent(HomeActivity.this, AuthActivity.class));
         }else {
             ServiceManager.instance().getUser(UserManager.instance().getCurrentUser().getToken(),
                     this, null);
         }
-
     }
 
-    public void loadGames(){
+    private void loadGames(){
         GameManager.instance().loadCategoryList(this, new RequestListener() {
             @Override
             public void onComplete() {
@@ -78,14 +74,12 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
                 mDrawerList.setItemChecked(0, true);
                 drawerItemClicked(0);
             }
-
             @Override
             public void onFailure() {
                 Toast.makeText(HomeActivity.this, "MAIN LOAD REQUEST FAILED!", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
 
     private void drawerItemClicked(long id) {
         if (id != lastSelectedItemId) {
@@ -95,8 +89,6 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
             mDrawerLayout.closeDrawers();
         }
     }
-
-
 
     @Override
     public void actionComplete(String actionType) {
@@ -119,7 +111,6 @@ public class HomeActivity extends BaseActivity implements FragmentActionListener
                 break;
         }
     }
-
 
     @Override
     protected void onDestroy() {

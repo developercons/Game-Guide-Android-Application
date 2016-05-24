@@ -14,12 +14,14 @@ import com.example.martha.gameguide.listener.FragmentActionListener;
  * Created by Martha on 5/22/2016.
  */
 public class FlipHorizontal extends Animation{
+    // region Static fields
     public static final int PIVOT_CENTER = 1, PIVOT_LEFT = 2, PIVOT_RIGHT = 3, PIVOT_NONE = 0;
     public static final String ACTION_FLIP_ANIMATION_COMPLETE = "action_flip_animation_complete";
+    // endregion
 
 
-    public AnimatorSet getAnimation(View rootView, long duration, float degrees, int pivot, final FragmentActionListener listener){
-        float pivotX, pivotY, viewWidth = rootView.getWidth(), viewHeight = rootView.getHeight();
+    public AnimatorSet animationSet(View rootView, long duration, float degrees, int pivot, final FragmentActionListener listener){
+        float viewWidth = rootView.getWidth(), viewHeight = rootView.getHeight();
         switch (pivot) {
             case PIVOT_NONE:
                 break;
@@ -35,7 +37,6 @@ public class FlipHorizontal extends Animation{
                 rootView.setPivotX(viewWidth / 2);
                 rootView.setPivotY(viewHeight / 2);
                 break;
-
         }
         AnimatorSet flipSet = new AnimatorSet();
         flipSet.play(ObjectAnimator.ofFloat(rootView, View.ROTATION_Y, rootView.getRotationY() + degrees));
@@ -52,5 +53,4 @@ public class FlipHorizontal extends Animation{
         });
         return flipSet;
     }
-
 }

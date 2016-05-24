@@ -19,6 +19,8 @@ import com.example.martha.gameguide.R;
  */
 public class GameExpandedInfoFragment extends Fragment{
 
+    // TODO Continue construction of this class
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

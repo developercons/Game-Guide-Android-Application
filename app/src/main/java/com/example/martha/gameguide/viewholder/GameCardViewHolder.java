@@ -48,7 +48,6 @@ public class GameCardViewHolder extends RecyclerView.ViewHolder implements View.
 
     @Override
     public void onClick(View v) {
-
     }
 
     public void initialise(GameModel gameModel) {

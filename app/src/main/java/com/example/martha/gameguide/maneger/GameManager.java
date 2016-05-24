@@ -18,23 +18,29 @@ import retrofit2.Call;
  */
 public class GameManager {
 
+    // region Static fields
+    private static GameManager instance = new GameManager();
+    // region
+
+    // region Instance fields
     private List<String> categoryList;
     private HashMap<String, List<Long>> gameIdMap;
     private volatile int queue = 0;
     private boolean isLoadRequestMade;
     private HashMap<GameCardViewHolder, Call> enquedGameCallMap;
     private Call tempCall;
-
-
-    private static GameManager instance = new GameManager();
+    // endregion
 
     public static GameManager instance() {
         return instance;
     }
 
+
+    // region ctor
     private GameManager() {
         init();
     }
+    // endregion
 
     private void init(){
         categoryList = new ArrayList<>();
@@ -110,7 +116,7 @@ public class GameManager {
         System.out.println("********************ERROR, NO CALL TO REPLACE WITH!********************");
     }
 
-    // Must be called on homeActivity onDestroy().
+    // TODO Must be called on homeActivity onDestroy().
     public void resetParams() {
         isLoadRequestMade = false;
         categoryList.clear();
@@ -119,7 +125,6 @@ public class GameManager {
         tempCall = null;
         queue = 0;
     }
-
 
     public List<String> getCategoryList() {
         return categoryList;

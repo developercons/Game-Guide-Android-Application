@@ -3,7 +3,6 @@ package com.example.martha.gameguide.fragment.game;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,16 +24,23 @@ import com.example.martha.gameguide.maneger.UserManager;
  * Created by Martha on 4/25/2016.
  */
 public class GameRecyclerListFragment extends Fragment{
+
+    // region Static fields
     public static final String TOOLBAR_RIGHT_BUTTON_CLICKED = "toolbar_right_button_clicked";
     public static final String TOOLBAR_LEFT_BUTTON_CLICKED = "toolbar_left_button_clicked";
+    // endregion
 
+    // region Instance fields
     private HomeActivity hostActivity;
     private FragmentActionListener fragmentActionListener;
     private Toolbar toolBar;
     private GameListAdapter adapter;
+    // endregion
 
+    // region ctor
     public GameRecyclerListFragment() {
     }
+    // endregion
 
     @Override
     public void onAttach(Context context) {
@@ -44,18 +50,20 @@ public class GameRecyclerListFragment extends Fragment{
         adapter = hostActivity.getAdapter();
     }
 
-
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // region View
         View view = inflater.inflate(R.layout.recycle_view, container, false);
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
+        // endregion
 
+        // region Attributes
         toolBar = initToolbar(view);
         updateToolbar();
+        // endregion
 
         return view;
     }
@@ -88,6 +96,7 @@ public class GameRecyclerListFragment extends Fragment{
         toolbarTitle.setTextColor(ContextCompat.getColor(toolbarTitle.getContext(), R.color.toolbar_title_color));
         return toolbar;
     }
+
     private void updateToolbar() {
         ImageView rightButton = (ImageView)toolBar.findViewById(R.id.toolbar_rightButton);
         int rightIcon;

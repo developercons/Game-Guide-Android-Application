@@ -2,7 +2,6 @@ package com.example.martha.gameguide.fragment.profile;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
@@ -24,20 +23,22 @@ import com.example.martha.gameguide.listener.FragmentActionListener;
  */
 public class ChangePasswordFragment extends Fragment {
 
-    public static final String ACTION_PASSWORD_CHANGE_BACK = "action_password_chnage_back";
+    // region Static field
+    public static final String ACTION_PASSWORD_CHANGE_BACK = "action_password_change_back";
+    // endregion
 
-    ProfileActivity hostActivity;
-    FragmentActionListener actionListener;
-
-
+    // region Instance fields
+    private ProfileActivity hostActivity;
+    private FragmentActionListener actionListener;
     private EditText oldPassword;
     private EditText newPassword;
     private EditText repeatNewPassword;
-    private Button changePasswordButton;
+    // endregion
 
+    // region ctor
     public ChangePasswordFragment() {
-
     }
+    // endregion
 
     @Override
     public void onAttach(Context context) {
@@ -46,16 +47,17 @@ public class ChangePasswordFragment extends Fragment {
         actionListener = hostActivity;
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // region Views
         View view = inflater.inflate(R.layout.change_password_view, container, false);
-        changePasswordButton = (Button) view.findViewById(R.id.change_password_view_change_button);
+        Button changePasswordButton = (Button) view.findViewById(R.id.change_password_view_change_button);
         // endregion
 
+        // region Attributes
         initToolbar(view);
+        // endregion
 
         return view;
     }
@@ -89,7 +91,6 @@ public class ChangePasswordFragment extends Fragment {
             String oldPasswordText = oldPassword.getText().toString();
             String newPasswordText = newPassword.getText().toString();
             String repeatNewPasswordText = repeatNewPassword.getText().toString();
-
         }
     }
 

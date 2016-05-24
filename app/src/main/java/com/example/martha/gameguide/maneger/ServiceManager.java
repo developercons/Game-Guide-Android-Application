@@ -40,19 +40,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ServiceManager {
 
+    // region Static fields
     public static final String SERVICE_SIGN_UP = "sign_up";
     public static final String SERVICE_LOGIN = "login";
     public static final String SERVICE_UPDATE = "update";
     public static final String SERVICE_GAME = "game_request";
-
-
-
     public static final String SERVICE_CHANGE_PASSWORD = "change_password";
     public static final String SERVICE_RECOVER_PASSWORD = "recover_password";
-    public static final String SERVICE_PROFILE_GET = "profile_get";
-    public static final String SERVICE_PROFILE_PUT = "profile_put";
-    public static final int CODE_SUCCESS = 200;
-    public static final int CODE_WRONG_EMAIL_PASSWORD = 400;
+    // endregion
 
     private static ServiceManager instance = new ServiceManager();
     public static ServiceManager instance() {
@@ -60,18 +55,21 @@ public class ServiceManager {
     }
 
 
+    // region Instance fields
     private HashMap<String, Object> requestData;
     public Gson gson = new GsonBuilder().create();
     public final String BASE_URL = "http://gameguideserver-margin.rhcloud.com/webapi/";
     public Retrofit retrofit;
-
-
     private UserService userService;
     private GameService gameService;
+    // endregion
 
+    // region ctor
     private ServiceManager() {
         init();
     }
+    // endregion
+
     private void init() {
         requestData = new HashMap<>();
         retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
@@ -81,6 +79,7 @@ public class ServiceManager {
         userService = retrofit.create(UserService.class);
         gameService = retrofit.create(GameService.class);
     }
+
     private HashMap<String, Object> buildRequest(Object object, String requestType) {
         requestData.clear();
         try {
@@ -112,8 +111,7 @@ public class ServiceManager {
     }
 
 
-
-
+    // region User
     public void signUp(final UserModel userModel, final Context context, final RequestListener listener) {
         Call<ResponseBundle<UserModel>> call = userService.sign_up(buildRequest(userModel, SERVICE_SIGN_UP));
         call.enqueue(new Callback<ResponseBundle<UserModel>>() {
@@ -262,7 +260,10 @@ public class ServiceManager {
         });
     }
 
+    // endregion
 
+
+    // region Game
     private void downloadProfilePicture(final UserModel userModel, final Context context, final RequestListener requestListener){
         Call<ResponseBody> call = userService.downloadProfilePicture(userModel.getToken());
         call.enqueue(new Callback<ResponseBody>() {
@@ -408,7 +409,6 @@ public class ServiceManager {
         });
         return call;
     }
-
-
+    // endregion
 
 }

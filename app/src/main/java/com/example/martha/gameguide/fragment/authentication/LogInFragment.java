@@ -28,15 +28,16 @@ import com.example.martha.gameguide.util.Util;
  */
 public class LogInFragment extends Fragment {
 
+    // Static fileds
     public static final String ACTION_LOG_IN_COMPLETE = "action_log_in_complete";
     public static final String ACTION_CLICK_SIGN_UP = "action_click_sign_up";
     public static final String ACTION_CLICK_PASS_RECOVERY = "action_click_pass_recovery";
     public static final String ACTION_CLICK_CONTINUE_WITHOUT_LOG_IN = "action_click_continue_without_log_in";
+    // endregion
 
     // region Instance fields
     private AuthActivity hostActivity;
     private FragmentActionListener actionListener;
-
     private EditText email;
     private EditText password;
     private TextView forgotPassword;
@@ -47,11 +48,10 @@ public class LogInFragment extends Fragment {
     private ProgressBar progressBar;
     // endregion
 
-    // region Constructors
+    // region ctor
     public LogInFragment() {
     }
     // endregion
-
 
     @Override
     public void onAttach(Context context) {
@@ -63,7 +63,6 @@ public class LogInFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-
     }
 
     @Override
@@ -79,11 +78,10 @@ public class LogInFragment extends Fragment {
         error = (TextView)view.findViewById(R.id.login_error);
         progressBar = (ProgressBar)view.findViewById(R.id.login_progress_bar);
         progressBar.setVisibility(View.INVISIBLE);
-
-        initListeners();
         // endregion
 
-        // region Components
+        // region Attributes
+        initListeners();
         hostActivity.manageKeyPadActions(view, continueWithoutLoginBtn, null, null);
         // endregion
 
@@ -115,7 +113,6 @@ public class LogInFragment extends Fragment {
                             enableAllButtons(true);
                             actionListener.actionComplete(ACTION_LOG_IN_COMPLETE);
                         }
-
                         @Override
                         public void onFailure() {
                             enableAllButtons(true);
@@ -147,7 +144,6 @@ public class LogInFragment extends Fragment {
                 email.setHint(R.string.hint_email);
             }
         });
-
 
         email.setOnClickListener(new View.OnClickListener() {
             @Override

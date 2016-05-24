@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,17 +21,22 @@ import com.isseiaoki.simplecropview.CropImageView;
  */
 public class CropImageFragment extends Fragment {
 
+    // region Static fields
     public static final String ACTION_CROP_PROCESS_COMPLETE = "action_crop_process_complete";
     public static final String ACTION_CROP_PROCESS_CANCELED = "action_crop_process_canceled";
+    // endregion
 
+    // region Instance fields
     private ProfileActivity hostActivity;
     private CropFragmentActionListener actionListener;
-
     private final int imageRequestCode = 1;
     private CropImageView cropImageView;
+    // endregion
 
+    // region ctor
     public CropImageFragment() {
     }
+    // endregion
 
     @Override
     public void onAttach(Context context) {
@@ -41,16 +45,19 @@ public class CropImageFragment extends Fragment {
         actionListener = hostActivity;
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // region View
         View view = inflater.inflate(R.layout.cropper, container, false);
         cropImageView = (CropImageView)view.findViewById(R.id.cropImageView);
         cropImageView.setCropMode(CropImageView.CropMode.RATIO_FREE);
         Button cropButton = (Button)view.findViewById(R.id.crop_button);
+        // endregion
 
+        // region Attributes
         initCropBtnListener(cropButton);
         chooseImage();
+        // endregion
 
         return view;
     }
@@ -64,7 +71,6 @@ public class CropImageFragment extends Fragment {
             }
         });
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -85,6 +91,4 @@ public class CropImageFragment extends Fragment {
         intent.setType("image/*");
         startActivityForResult(intent, imageRequestCode);
     }
-
-
 }

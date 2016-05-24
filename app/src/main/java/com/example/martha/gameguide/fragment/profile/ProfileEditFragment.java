@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
@@ -36,33 +35,34 @@ import java.io.ByteArrayOutputStream;
 
 public class ProfileEditFragment extends Fragment {
 
+    // region Static fields
     public static final String ACTION_CLICK_CHANGE_PROF_PIC = "action_click_change_prof_pic";
     public static final String ACTION_CLICK_TOOLBAR_RIGHT_BTN = "action_click_toolbar_right_btn";
     public static final String ACTION_CLICK_CHANGE_PASSWORD = "action_click_change_password";
     public static final String ACTION_SAVE_PROFILE_COMPLETE = "action_save_profile_complete";
     public static final String ACTION_PROFILE_EDIT_BACK = "action_profile_edit_back";
+    // endregion
 
+    // region Instance fields
     private ProfileActivity hostActivity;
     private FragmentActionListener actionListener;
-
     private ImageView profilePicView;
     private TextView changeProfilePicButton;
     private Button saveButton;
-
     private EditText firstName;
     private EditText lastName;
     private EditText email;
     private EditText phoneNumber;
     private TextView changePassword;
-
     private ImageView toolbarLeftButton;
     private ImageView toolbarRightButton;
-
     private ProgressBar progressBar;
+    // endregion
 
-
+    // region ctor
     public ProfileEditFragment() {
     }
+    // endregion
 
     @Override
     public void onAttach(Context context) {
@@ -77,7 +77,6 @@ public class ProfileEditFragment extends Fragment {
         super.onDetach();
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -93,30 +92,30 @@ public class ProfileEditFragment extends Fragment {
         changeProfilePicButton = (TextView)view.findViewById(R.id.change_photo);
         progressBar = (ProgressBar) view.findViewById(R.id.edit_progress_bar);
         progressBar.setVisibility(View.INVISIBLE);
+        // endregion
 
+       // region Attributes
+        updateInfo();
+        initButtonListeners();
+        initToolbar(view);
+        hostActivity.manageKeyPadActions(view, profilePicView, changeProfilePicButton, null);
+        // endregion
+
+        return view;
+    }
+
+    private void updateInfo(){
         if (hostActivity.getTempProfPic() != null) {
             profilePicView.setImageBitmap(hostActivity.getTempProfPic());
         } else {
             profilePicView.setImageBitmap(hostActivity.getCurrentProfPic());
         }
-
-
         UserModel user = UserManager.instance().getCurrentUser();
-
         if (user.getFirst_name() != null && !user.getFirst_name().isEmpty()) firstName.setHint(user.getFirst_name());
         if (user.getLast_name() != null && !user.getLast_name().isEmpty()) lastName.setHint(user.getLast_name());
         if (user.getEmail() != null && !user.getEmail().isEmpty()) email.setHint(user.getEmail());
         if (user.getPhone() != null && !user.getPhone().isEmpty()) phoneNumber.setHint(user.getPhone());
-
-        initButtonListeners();
-        initToolbar(view);
-        hostActivity.manageKeyPadActions(view, profilePicView, changeProfilePicButton, null);
-
-
-        return view;
     }
-
-
 
     private void initToolbar(View rootView) {
         Toolbar toolbar = hostActivity.makeToolbar(rootView.findViewById(R.id.edit_account_toolbar), getString(R.string.edit_account_toolbar_title),
@@ -140,6 +139,7 @@ public class ProfileEditFragment extends Fragment {
         toolbarLeftButton = left;
         toolbarRightButton = right;
     }
+
     private void initButtonListeners() {
         changeProfilePicButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,6 +154,8 @@ public class ProfileEditFragment extends Fragment {
                     Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                // region input fields check
                 String emailText = email.getText().toString();
                 String phoneText = phoneNumber.getText().toString();
                 String firstNameText = firstName.getText().toString();
@@ -171,8 +173,8 @@ public class ProfileEditFragment extends Fragment {
                 }
 
                 final UserModel currentUser = UserManager.instance().getCurrentUser();
-
                 final UserModel updatedUserModel = new UserModel();
+
                 if (!firstNameText.isEmpty()) updatedUserModel.setFirst_name(firstNameText);
                     else{updatedUserModel.setFirst_name(currentUser.getFirst_name());}
                 if (!lastNameText.isEmpty()) updatedUserModel.setLast_name(lastNameText);
@@ -181,10 +183,12 @@ public class ProfileEditFragment extends Fragment {
                     else{updatedUserModel.setEmail(currentUser.getEmail());}
                 if (!phoneText.isEmpty()) updatedUserModel.setPhone(phoneText);
                     else{updatedUserModel.setPhone(currentUser.getPhone());}
+                // endregion
 
                 AsyncTask.execute(new Runnable() {
                     @Override
                     public void run() {
+                        // region Request user model building
                         if (hostActivity.getTempProfPic() != null) {
                             ByteArrayOutputStream stream = new ByteArrayOutputStream();
                             hostActivity.getTempProfPic().compress(Bitmap.CompressFormat.PNG, 10, stream);
@@ -196,7 +200,9 @@ public class ProfileEditFragment extends Fragment {
                                 enableAllButtons(false);
                             }
                         });
+                        // endregion
 
+                        // region Build request
                         ServiceManager.instance().updateUser(updatedUserModel, currentUser.getToken(),
                                 getContext(), new RequestListener() {
                                     @Override
@@ -218,6 +224,7 @@ public class ProfileEditFragment extends Fragment {
                                         });
                                     }
                                 });
+                        // endregion
                     }
                 });
             }

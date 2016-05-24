@@ -21,8 +21,6 @@ public @interface Request {
 
     boolean change_password() default false;
     boolean recover_password() default false;
-    boolean profile_get() default false;
-
 
     boolean game_request() default false;
 

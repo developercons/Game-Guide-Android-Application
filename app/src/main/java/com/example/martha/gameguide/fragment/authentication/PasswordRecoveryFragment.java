@@ -23,18 +23,22 @@ import com.example.martha.gameguide.util.Util;
  */
 public class PasswordRecoveryFragment extends Fragment {
 
-
+    // region Static fields
     public static final String ACTION_PASS_RECOVERED = "action_pass_recover_complete";
     public static final String ACTION_CLICK_PASS_RECOVER_BACK = "action_click_pass_recover_back";
+    // endregion
 
+    // region Instance fileds
     private AuthActivity hostActivity;
     private FragmentActionListener actionListener;
-
     private EditText email;
+    private Button recoveryButton;
+    // endregion
 
-
+    // region ctor
     public PasswordRecoveryFragment() {
     }
+    // endregion
 
     @Override
     public void onAttach(Context context) {
@@ -46,13 +50,17 @@ public class PasswordRecoveryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // region View
         View view = inflater.inflate(R.layout.password_recovery_view, container, false);
         email = (EditText)view.findViewById(R.id.password_rec_view_email);
-        Button recoveryButton = (Button) view.findViewById(R.id.password_rec_view_recover_button);
+        recoveryButton = (Button) view.findViewById(R.id.password_rec_view_recover_button);
+        // endregion
 
+        // region Attributes
         hostActivity.manageKeyPadActions(view, null, null, null);
         initRecButtonListener(recoveryButton);
         initToolbar(view);
+        // endregion
 
         return view;
     }
@@ -66,7 +74,6 @@ public class PasswordRecoveryFragment extends Fragment {
                 if(Util.isEmailValid(emailText)){
                     actionListener.actionComplete(ACTION_PASS_RECOVERED);
                 }
-
             }
         });
     }

@@ -7,5 +7,4 @@ public interface FragmentActionListener {
 
     void actionComplete(String actionType);
 
-
 }

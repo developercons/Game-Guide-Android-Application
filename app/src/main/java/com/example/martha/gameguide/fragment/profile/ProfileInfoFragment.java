@@ -2,7 +2,6 @@ package com.example.martha.gameguide.fragment.profile;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
@@ -29,25 +28,27 @@ import com.example.martha.gameguide.model.UserModel;
 
 public class ProfileInfoFragment extends Fragment {
 
+    // region Static fields
     public static final String ACTION_CLICK_EDIT_PROF_BTN = "action_click_edit_prof_btn";
     public static final String ACTION_CLICK_FACEBOOK_BTN = "action_click_facebook_btn";
     public static final String ACTION_CLICK_TOOLBAR_BACK = "action_click_toolbar_back";
     public static final String ACTION_LOG_OUT_COMPLETE = "action_log_out_complete";
+    // endregion
 
-    private int tollbarLeftButton;
-    private int tollbarRightButton;
-
-
+    // region Instance fields
     private ProfileActivity hostActivity;
     private FragmentActionListener actionListener;
-
     private TextView editProfile;
     private Button facebookButton;
     private Button logoutButton;
-    TextView firstLastNames;
+    private TextView firstLastNames;
+    private ImageView profPicView;
+    // endregion
 
+    // region ctor
     public ProfileInfoFragment() {
     }
+    // endregion
 
     @Override
     public void onAttach(Context context) {
@@ -56,29 +57,34 @@ public class ProfileInfoFragment extends Fragment {
         actionListener = hostActivity;
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         // region View
         View view = inflater.inflate(R.layout.profile_view, container, false);
-        ImageView profPicView = (ImageView)view.findViewById(R.id.profile_view_prof_pic);
+        profPicView = (ImageView)view.findViewById(R.id.profile_view_prof_pic);
         firstLastNames = (TextView)view.findViewById(R.id.profile_view_name_surname);
         editProfile = (TextView)view.findViewById(R.id.profile_view_edit_account);
         facebookButton = (Button)view.findViewById(R.id.profile_view_disconnect_with_fb);
         logoutButton = (Button)view.findViewById(R.id.profile_view_logout_button);
+        // endregion
 
+        // region Attributes
+        updateInfo();
+        initToolbar(view);
+        initButtonListeners();
+        // endregion
+
+        return view;
+    }
+
+    private void updateInfo(){
         profPicView.setImageBitmap(hostActivity.getCurrentProfPic());
         UserModel currentUser = UserManager.instance().getCurrentUser();
         if(currentUser != null){
             firstLastNames.setText(currentUser.getFirst_name() + " " + currentUser.getLast_name());
             Toast.makeText(getActivity(), "User info updated", Toast.LENGTH_SHORT).show();
         }
-        // endregion
-
-        initToolbar(view);
-        initButtonListeners();
-
-        return view;
     }
 
     private void initButtonListeners() {

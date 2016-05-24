@@ -19,13 +19,18 @@ import java.util.List;
  * Created by Martha on 5/9/2016.
  */
 public class NavigationDrawerAdapter extends BaseAdapter{
+
+    // region Instance fields
     private Context context;
     private List<NavDrawerItemModel> drawerList;
+    // endregion
 
+    // region ctor
     public NavigationDrawerAdapter(Context context) {
         this.context = context;
         this.drawerList = new ArrayList<>();
     }
+    // endregion
 
     public void setDrawerItems(List<NavDrawerItemModel> list){
         drawerList.clear();
